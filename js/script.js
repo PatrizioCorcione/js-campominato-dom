@@ -5,7 +5,8 @@ const difficult = document.getElementById("difficult");
 let sqrTot;
 const totBomb = 16;
 const arrBomb = [];
-let punteggio = 0;
+let score = 0;
+const result = document.getElementById("result")
 
 
 
@@ -27,6 +28,11 @@ function start() {
 function reset() {
 
   gridContainer.innerHTML = "";
+  score=0;
+  arrBomb.splice(0);
+  result.innerHTML=`
+    Il tuo punteggio attuale: ${score}
+    `
   
 }
 
@@ -53,14 +59,24 @@ function sqrGene(index) {
   sqr.addEventListener("click",function(){
 
     sqr._sqrID = index;
-    sqr.classList.add("clicked");
     if (arrBomb.includes(sqr._sqrID)) {
 
-      punteggio++
-      console.log(punteggio);
-      
-      
+      sqr.classList.add ("bomb");
+
+      const end = document.createElement("div");
+      end.innerHTML = "Hai perso!";
+      end.className = "gameover";
+      gridContainer.append(end);
+      score--;
+
+    
     }
+    sqr.classList.add("clicked");
+    score++;
+    
+    result.innerHTML=`
+    Il tuo punteggio attuale: ${score} su ${sqrTot - totBomb}
+    `
 
   })
   
