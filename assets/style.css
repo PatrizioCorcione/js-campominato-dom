@@ -1,0 +1,25 @@
+.sqr100{
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+}
+.sqr81{
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+}
+.sqr49{
+  width: calc(100% / 7);
+  height: calc(100% / 7);
+}
+.grid{
+  display: flex;
+  flex-wrap: wrap;
+  width: 800px;
+  height: 800px;
+}
+.sqr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  cursor: cell;
+}
