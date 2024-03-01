@@ -6,8 +6,7 @@ let sqrTot;
 const totBomb = 16;
 const arrBomb = [];
 let score = 0;
-const result = document.getElementById("result")
-
+const result = document.getElementById("result");
 
 
 
@@ -23,8 +22,7 @@ function start() {
   geneGrid();
   randBomb();
   console.log(arrBomb);
-  const arrsqr = document.querySelectorAll(".sqr");
-  console.log(arrsqr);
+
 
 }
 
@@ -59,20 +57,18 @@ function sqrGene(index) {
   const sqr = document.createElement("div");
   sqr.className = "sqr";
   sqr.classList.add("sqr" + sqrTot);
+  sqr._sqrID = index;
+  
 
   sqr.addEventListener("click",function(){
 
-    sqr._sqrID = index;
-    
-    
-    
 
     if ((!arrBomb.includes(sqr._sqrID))&&(!(sqr.classList.contains("clicked")))) {
       score++;
       checkWin();
     }
     sqr.classList.add("clicked");
-    see(arrsqr);
+   
     checkLose(sqr);
 
     result.innerHTML=`
@@ -104,13 +100,19 @@ function randBomb() {
 }
 
 function checkLose(sqr) {
+  const allSqr = document.querySelectorAll(".sqr");
 
   if (arrBomb.includes(sqr._sqrID)) {
 
-    
+    for (let i = 0; i < allSqr.length; i++) {
+      if(arrBomb.includes(allSqr[i]._sqrID)){
+        allSqr[i].classList.add("bomb");
+      }
+      
+    }
     
 
-    sqr.classList.add ("bomb");
+    
     
 
     const end = document.createElement("div");
@@ -132,13 +134,4 @@ function checkWin() {
   }
 }
 
-function see(arrsqr) {
-  
-  let x = 0;
-  for (let i = 0; i < arrBomb.length; i++) {
-    if (arrBomb.includes(arrsqr[i]._sqrID)) {
-      arrsqr[i].classList.add("bomb");
-      
-    }
-  }
-}
+
