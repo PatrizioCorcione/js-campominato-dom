@@ -13,8 +13,8 @@
 .grid{
   display: flex;
   flex-wrap: wrap;
-  width: 800px;
-  height: 800px;
+  width: 500px;
+  height: 500px;
 }
 .sqr{
   display: flex;
@@ -22,4 +22,7 @@
   align-items: center;
   border: 1px solid black;
   cursor: cell;
+}
+.clicked{
+  background-color: brown;
 }
