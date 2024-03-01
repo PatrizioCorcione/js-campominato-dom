@@ -3,10 +3,11 @@ const btnStart = document.getElementById("btn-start");
 const SqrArr = [100,81,49];
 const difficult = document.getElementById("difficult");
 let sqrTot;
-const totBomb = 1;
+const totBomb = 16;
 const arrBomb = [];
 let score = 0;
 const result = document.getElementById("result")
+
 
 
 
@@ -22,7 +23,8 @@ function start() {
   geneGrid();
   randBomb();
   console.log(arrBomb);
-
+  const arrsqr = document.querySelectorAll(".sqr");
+  console.log(arrsqr);
 
 }
 
@@ -62,15 +64,17 @@ function sqrGene(index) {
 
     sqr._sqrID = index;
     
-    sqr.classList.add("clicked");
-    checkLose(sqr);
+    
     
 
-    if ((!arrBomb.includes(sqr._sqrID))) {
+    if ((!arrBomb.includes(sqr._sqrID))&&(!(sqr.classList.contains("clicked")))) {
       score++;
       checkWin();
     }
-    
+    sqr.classList.add("clicked");
+    see(arrsqr);
+    checkLose(sqr);
+
     result.innerHTML=`
     Il tuo punteggio attuale: ${score} su ${sqrTot - totBomb}
     `
@@ -100,9 +104,14 @@ function randBomb() {
 }
 
 function checkLose(sqr) {
+
   if (arrBomb.includes(sqr._sqrID)) {
 
+    
+    
+
     sqr.classList.add ("bomb");
+    
 
     const end = document.createElement("div");
     end.innerHTML = "Hai perso!";
@@ -115,11 +124,21 @@ function checkLose(sqr) {
 function checkWin() {
   if (score === (sqrTot - totBomb)) {
 
-  
     const win = document.createElement("div");
     win.innerHTML = "Hai vinto!";
     win.className = "win";
     gridContainer.append(win);
     
+  }
+}
+
+function see(arrsqr) {
+  
+  let x = 0;
+  for (let i = 0; i < arrBomb.length; i++) {
+    if (arrBomb.includes(arrsqr[i]._sqrID)) {
+      arrsqr[i].classList.add("bomb");
+      
+    }
   }
 }
