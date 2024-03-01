@@ -3,7 +3,7 @@ const btnStart = document.getElementById("btn-start");
 const SqrArr = [100,81,49];
 const difficult = document.getElementById("difficult");
 let sqrTot;
-const totBomb = 16;
+const totBomb = 1;
 const arrBomb = [];
 let score = 0;
 const result = document.getElementById("result")
@@ -15,6 +15,7 @@ btnStart.addEventListener("click",start);
 /*FUNZIONI*/
 
 function start() {
+  
 
   reset();
   sqrTot = SqrArr[difficult.value];
@@ -50,6 +51,7 @@ function geneGrid() {
   gridContainer.append(grid);
   
 }
+
 function sqrGene(index) {
 
   const sqr = document.createElement("div");
@@ -59,25 +61,19 @@ function sqrGene(index) {
   sqr.addEventListener("click",function(){
 
     sqr._sqrID = index;
-    if (arrBomb.includes(sqr._sqrID)) {
-
-      sqr.classList.add ("bomb");
-
-      const end = document.createElement("div");
-      end.innerHTML = "Hai perso!";
-      end.className = "gameover";
-      gridContainer.append(end);
-      score--;
-
     
-    }
     sqr.classList.add("clicked");
-    score++;
+    checkLose(sqr);
+    
+
+    if ((!arrBomb.includes(sqr._sqrID))) {
+      score++;
+      checkWin();
+    }
     
     result.innerHTML=`
     Il tuo punteggio attuale: ${score} su ${sqrTot - totBomb}
     `
-
   })
   
   return sqr;
@@ -101,4 +97,29 @@ function randBomb() {
   console.log(arrBomb.length);
   console.log(totBomb);
 
+}
+
+function checkLose(sqr) {
+  if (arrBomb.includes(sqr._sqrID)) {
+
+    sqr.classList.add ("bomb");
+
+    const end = document.createElement("div");
+    end.innerHTML = "Hai perso!";
+    end.className = "gameover";
+    gridContainer.append(end);
+    
+  }
+}
+
+function checkWin() {
+  if (score === (sqrTot - totBomb)) {
+
+  
+    const win = document.createElement("div");
+    win.innerHTML = "Hai vinto!";
+    win.className = "win";
+    gridContainer.append(win);
+    
+  }
 }

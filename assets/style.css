@@ -40,3 +40,15 @@
   height: 500px;
   background-color: rgba(255, 0, 0, 0.468);
 }
+.win{
+  font-weight: bold;
+  font-size: 4rem;
+  color: rgb(234, 226, 0);
+  text-align: center;
+  line-height: 500px;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background-color: rgba(0, 255, 64, 0.468);
+
+}
