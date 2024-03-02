@@ -38,7 +38,7 @@
   position: absolute;
   width: 500px;
   height: 500px;
-  background-color: rgba(255, 0, 0, 0.468);
+  background-color: rgba(255, 0, 0, 0);
 }
 .win{
   font-weight: bold;
@@ -51,4 +51,44 @@
   height: 500px;
   background-color: rgba(0, 255, 64, 0.468);
 
+}
+
+img{
+  width: 50px;
+  border-radius: 50%;
+  margin: 0px 10px 0px 0px;
+}
+#difficult {
+  border-radius: 6px;
+  border: none;
+  background-color: white;
+  width: 300px;
+}
+header{
+  margin-top: 20px;
+  background-color: #00e064;
+}
+.title{
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+main{
+  background-color: #b9ffba;
+  border-right: 10px solid #00e064;
+  border-left: 10px solid #00e064;
+}
+main h1{
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 3rem;
+  color: #00e064;
+}
+footer{
+  background-color: #00e064;
+}
+
+footer{
+  color: white;
+  font-weight: bold;
 }
