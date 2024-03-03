@@ -3,7 +3,7 @@ const btnStart = document.getElementById("btn-start");
 const SqrArr = [100, 81, 49];
 const difficult = document.getElementById("difficult");
 let sqrTot;
-const totBomb = 4;
+const totBomb = 16;
 const arrBomb = [];
 let score = 0;
 let opened = 0;
@@ -19,8 +19,6 @@ function start() {
   generateGrid();
   generateBombs();
   
-  
-
 }
 
 // Reset function to reset the game state
@@ -44,20 +42,28 @@ function generateGrid() {
   gridContainer.append(grid);
 }
 
-
 // Create a square element
+
 function createSquare(index) {
   const sqr = document.createElement("div");
   sqr.className = "sqr";
   sqr.classList.add("sqr" + sqrTot);
   sqr._sqrID = index;
   sqr.setAttribute("sqr-id", index);
+
   
+  sqr.addEventListener("contextmenu", function() {
+    sqr.classList.toggle("redFlag");
+    event.preventDefault();
+
+  });
 
   sqr.addEventListener("click", function() {
 
-    if (!arrBomb.includes(sqr._sqrID) && !sqr.classList.contains("clicked")) {
-
+    if (!arrBomb.includes(sqr._sqrID) && !sqr.classList.contains("clicked")&&(!sqr.classList.contains("redFlag"))) {
+      score++;
+      sqr.classList.add("clicked");
+      checkWin();
       const bombsAround = checkAround(sqr);
       sqr.innerHTML = bombsAround;
 
@@ -68,10 +74,6 @@ function createSquare(index) {
       }
     }
 
-    sqr.classList.add("clicked");
-    score++;
-    console.log(score);
-    checkWin(sqr);
     checkLose(sqr);
     updateResult();
     
@@ -106,7 +108,8 @@ function openAdjacentSquares(sqr) {
         nearCell.classList.add("clicked");
         const bombsAround = checkAround(nearCell);
         nearCell.innerHTML = bombsAround;
-        opened++;
+        score++;
+        checkWin();
         console.log(opened);
         if (bombsAround === 0) {
           openAdjacentSquares(nearCell);
@@ -129,7 +132,7 @@ function generateBombs() {
 
 // Check if the player loses
 function checkLose(sqr) {
-  if (arrBomb.includes(sqr._sqrID)) {
+  if (arrBomb.includes(sqr._sqrID) && !sqr.classList.contains("redFlag")) {
     revealBombs();
     endGame("Hai perso!");
   }
@@ -165,7 +168,7 @@ function revealBombs() {
 
 // Update the result display
 function updateResult() {
-  result.innerHTML = `Il tuo punteggio attuale: ${score + opened - 1} su ${sqrTot - totBomb}`;
+  result.innerHTML = `Il tuo punteggio attuale: ${score + opened} su ${sqrTot - totBomb}`;
 }
 
 function checkAround(sqr) {

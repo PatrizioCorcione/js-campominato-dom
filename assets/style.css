@@ -27,7 +27,11 @@
   background-color: rgb(9, 151, 30);
 }
 .bomb{
-  background-color: brown;
+  background-image: url(../assets/img/biohazard-solid.svg);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(201, 87, 34);
 }
 .gameover{
   font-weight: bold;
@@ -91,4 +95,12 @@ footer{
 footer{
   color: white;
   font-weight: bold;
+}
+
+.redFlag{
+  background-image: url(../assets/img/circle-radiation-solid.svg);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(57, 255, 87);
 }
