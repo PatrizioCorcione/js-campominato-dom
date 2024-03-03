@@ -11,6 +11,8 @@
   height: calc(100% / 7);
 }
 .grid{
+  border: 5px outset black;
+  background-color: rgb(143, 97, 6);
   display: flex;
   flex-wrap: wrap;
   width: 500px;
@@ -20,10 +22,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 3px outset black;
   cursor: cell;
+  font-size: 2rem;
 }
 .clicked{
+  border: 3px inset black;
   background-color: rgb(9, 151, 30);
 }
 .bomb{
@@ -35,14 +39,14 @@
 }
 .gameover{
   font-weight: bold;
-  font-size: 4rem;
-  color: black;
+  font-size: 5rem;
+  color: rgb(191, 3, 3);
   text-align: center;
   line-height: 500px;
   position: absolute;
   width: 500px;
   height: 500px;
-  background-color: rgba(255, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.557);
 }
 .win{
   font-weight: bold;
@@ -103,4 +107,24 @@ footer{
   background-repeat: no-repeat;
   background-position: center;
   background-color: rgb(57, 255, 87);
+}
+.bombs0{
+
+  color: transparent;
+  user-select: none;
+
+}
+.bombs1{
+  color: rgb(0, 57, 229);
+  
+}
+.bombs2{
+ color: rgb(92, 0, 92);
+}
+.bombs3{
+  color: teal;
+
+}
+.bombs4{
+ color: rgb(170, 255, 0);
 }

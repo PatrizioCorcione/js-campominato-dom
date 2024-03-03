@@ -3,7 +3,7 @@ const btnStart = document.getElementById("btn-start");
 const SqrArr = [100, 81, 49];
 const difficult = document.getElementById("difficult");
 let sqrTot;
-const totBomb = 16;
+const totBomb = 6;
 const arrBomb = [];
 let score = 0;
 let opened = 0;
@@ -66,10 +66,13 @@ function createSquare(index) {
       checkWin();
       const bombsAround = checkAround(sqr);
       sqr.innerHTML = bombsAround;
+      sqr.classList.add("bombs"+bombsAround);
 
       if (bombsAround === 0) {
+        
 
         openAdjacentSquares(sqr);
+        
 
       }
     }
@@ -103,14 +106,15 @@ function openAdjacentSquares(sqr) {
       !(isLastRow && (direction === + gridWidth + 1 || direction === + gridWidth || direction === + gridWidth - 1))
     ) {
       const nearCell = document.querySelector(`.sqr[sqr-id="${nearCellID}"]`);
-
+      
       if (nearCell && !nearCell.classList.contains("clicked") && !arrBomb.includes(nearCellID)) {
         nearCell.classList.add("clicked");
         const bombsAround = checkAround(nearCell);
+        nearCell.classList.add("bombs"+bombsAround);
         nearCell.innerHTML = bombsAround;
         score++;
         checkWin();
-        console.log(opened);
+        
         if (bombsAround === 0) {
           openAdjacentSquares(nearCell);
           
@@ -134,14 +138,14 @@ function generateBombs() {
 function checkLose(sqr) {
   if (arrBomb.includes(sqr._sqrID) && !sqr.classList.contains("redFlag")) {
     revealBombs();
-    endGame("Hai perso!");
+    endGame("HAI PERSO!");
   }
 }
 
 // Check if the player wins
 function checkWin() {
   if (score === (sqrTot - totBomb)) {
-    endGame("Hai vinto!");
+    endGame("HAI VINTO!");
   }
 }
 
@@ -179,7 +183,6 @@ function checkAround(sqr) {
   const isLastRow = sqr._sqrID > sqrTot - gridWidth;
   const allDirections = [- gridWidth - 1, - gridWidth, - gridWidth + 1, - 1, + 1, + gridWidth - 1, + gridWidth, + gridWidth + 1];
   let bombsAround = 0;
-  const nearCellArray = [];
 
   for (let i = 0; i < allDirections.length; i++) {
     const direction = allDirections[i];
